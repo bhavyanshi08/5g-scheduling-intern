@@ -1,0 +1,22 @@
+# Summary of the Paper: "Deep Reinforcement Learning for Resource Allocation in 5G Communications”
+
+The paper "Deep Reinforcement Learning for Resource Allocation in 5G Communications" is about using Deep Reinforcement Learning for 5G Communications networks.It talks about how Deep Reinforcement Learning can be used for 5G Communications networks.
+People use 5G Communications networks to send data and connect to the internet.Managing resources in 5G Communications networks is very hard because 5G Communications networks are complex and always changing.The old ways of managing resources in 5G Communications networks do not work well.
+This is because the old methods use math to understand how the 5G Communications network is working. They do not work well when the 5G Communications network and traffic are growing fast.
+
+
+The authors think that Deep Reinforcement Learning is a solution for 5G Communications networks.Deep Reinforcement Learning is a way for a computer program to learn how to manage resources in 5G Communications networks.
+The program learns by trying things and seeing what happens.It gets better at making decisions based on how the 5G Communications network's working.
+Deep Reinforcement Learning is good for 5G Communications systems because it can handle a lot of data and make decisions quickly.
+
+
+The paper looks at the Cloud Radio Access Network architecture in 5G Communications networks.This architecture has radio stations connected to a unit that helps all parts of the 5G Communications network work.
+This system makes it easier to manage resources in 5G Communications networks.The paper says that Deep Reinforcement Learning can improve how the 5G Communications network works.It can also improve the service, including how the 5G Communications network uses space and energy.
+Deep Reinforcement Learning can learn how to schedule things in 5G Communications networks.
+There are still some challenges, for example Deep Reinforcement Learning is complicated and needs a lot of training.
+It is also hard to make it work in time for 5G Communications networks.
+
+
+Overall the paper shows that Deep Reinforcement Learning can make 5G Communications networks work better and more efficient.Deep Reinforcement Learning has the potential to make a difference in 5G Communications networks.The paper focuses on Deep Reinforcement Learning and 5G Communications networks.
+Deep Reinforcement Learning can really help 5G Communications networks to work.
+Deep Reinforcement Learning is good, for 5G Communications networks.5G Communications networks can work better with Deep Reinforcement Learning.
