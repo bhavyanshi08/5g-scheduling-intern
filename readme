@@ -1,0 +1,14 @@
+# 5G Scheduling Internship
+
+Research Topic:
+5G Resource Scheduling using AI and Deep Reinforcement Learning
+
+Team Goal:
+Build AI-based scheduling algorithms for improving throughput, latency, and fairness.
+
+Folder Structure:
+
+schedulers/
+envs/
+results/
+paper/
