@@ -1,0 +1,3 @@
+Scheduler,Total Allocations,Average Allocations per UE,Jain Fairness Index,Remarks
+Round Robin (RR),10000,2000.00,1.000,Perfectly equal resource distribution among all UEs
+Proportional Fair (PF),10000,2000.00,0.999,Maintains fairness while adapting to throughput conditions
