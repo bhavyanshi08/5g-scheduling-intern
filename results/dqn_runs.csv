@@ -1,0 +1,2 @@
+Run,Algorithm,Timesteps,LearningRate,Gamma,ExplorationStrategy,EpisodeLength,FinalReward,MeanReward,Status,Remarks
+1,DQN,50000,0.0001,0.99,Linear,1000,3581,3050,Completed,Baseline DQN training on custom 5G scheduling environment
