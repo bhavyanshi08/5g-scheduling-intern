@@ -99,4 +99,20 @@ class SchedulingEnv(gym.Env):
             terminated,
             truncated,
             {}
-        ) 
+        )
+if __name__ == "__main__":
+    print("Running Scheduling Environment...")
+
+    env = SchedulingEnv()
+
+    state, _ = env.reset()
+    print("\nInitial State:\n", state)
+
+    for i in range(5):
+        action = env.action_space.sample()
+        next_state, reward, terminated, truncated, _ = env.step(action)
+
+        print(f"\nStep {i+1}")
+        print("Action:", action)
+        print("Reward:", reward)
+        print("Next State:\n", next_state)

@@ -1,12 +1,13 @@
-ues=5
-rbs=10
-slots=100
-allocation=[]
+ues = int(input("Enter number of UEs: "))
+rbs = int(input("Enter number of Resource Blocks (RBs): "))
+slots = int(input("Enter number of Time Slots: "))
+allocation = []
 for i in range(slots):
-    row=[]
+    row = []
     for j in range(rbs):
-        ue=j%ues
+        ue = (i + j) % ues
         row.append(ue)
     allocation.append(row)
-for r in allocation:
-    print(r)
+print("\nRound Robin Allocation Matrix:\n")
+for idx, r in enumerate(allocation):
+    print(f"Slot {idx + 1}: {r}")
