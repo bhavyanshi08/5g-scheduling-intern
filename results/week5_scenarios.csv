@@ -1,0 +1,4 @@
+Scenario,Mean Throughput,Throughput Std,Mean Latency,Latency Std,Mean Fairness,Fairness Std,Remarks
+5 UEs,16950.00,7088.55,56400.00,21236.29,0.2000,0.0000,Low-load baseline scenario
+15 UEs,16630.00,7279.64,67140.00,13608.10,0.0667,0.0000,Medium-load scenario
+30 UEs,18370.00,7156.33,63080.66,17480.66,0.0333,0.0000,High-load scenario
