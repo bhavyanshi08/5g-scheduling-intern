@@ -108,5 +108,8 @@ plt.ylabel("Average Reward")
 plt.title("Q-Learning on CartPole (20-Episode Moving Average)")
 plt.grid(True)
 
-plt.savefig("reward_curve.png")
+import os
+
+os.makedirs("rl", exist_ok=True)
+plt.savefig("rl/reward_curve.png")
 plt.show()

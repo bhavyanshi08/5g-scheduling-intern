@@ -1,3 +1,4 @@
+print("Program started")
 import random
 
 ues = int(input("Enter number of UEs: "))
