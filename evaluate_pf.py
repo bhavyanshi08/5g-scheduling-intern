@@ -1,0 +1,63 @@
+import numpy as np
+from envs.scheduling_env import SchedulingEnv
+
+print("🚀 PF Evaluation Started...")
+
+env = SchedulingEnv()
+
+num_episodes = 5
+
+throughputs = []
+latencies = []
+fairnesses = []
+
+for ep in range(num_episodes):
+
+    print(f"\n👉 Episode {ep+1}")
+
+    obs = env.reset()
+    if isinstance(obs, tuple):
+        obs = obs[0]
+
+    done = False
+
+    episode_throughput = 0
+    episode_latency = 0
+    allocations = np.zeros(env.num_ues)
+
+    while not done:
+
+        # ⚡ PF logic (simple placeholder)
+        action = np.argmax(allocations + 1e-5)
+
+        step_result = env.step(action)
+
+        if len(step_result) == 5:
+            obs, reward, terminated, truncated, info = step_result
+            done = terminated or truncated
+        else:
+            obs, reward, done, info = step_result
+
+        if isinstance(obs, tuple):
+            obs = obs[0]
+
+        episode_throughput += info.get("throughput", reward)
+        episode_latency += info.get("latency", 0)
+
+        if "allocations" in info:
+            allocations += info["allocations"]
+
+    fairness = (
+        np.sum(allocations) ** 2
+        /
+        (len(allocations) * np.sum(allocations ** 2) + 1e-8)
+    )
+
+    throughputs.append(episode_throughput)
+    latencies.append(episode_latency)
+    fairnesses.append(fairness)
+
+print("\n📊 PF Results")
+print(f"Throughput: {np.mean(throughputs):.2f}")
+print(f"Latency: {np.mean(latencies):.2f}")
+print(f"Fairness: {np.mean(fairnesses):.4f}")
