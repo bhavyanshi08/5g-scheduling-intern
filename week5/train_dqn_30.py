@@ -1,0 +1,50 @@
+import sys
+import os
+
+# Add project root to path
+sys.path.append(
+    os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__),
+            ".."
+        )
+    )
+)
+
+from stable_baselines3 import DQN
+from stable_baselines3.common.monitor import Monitor
+from envs.scheduling_env import SchedulingEnv
+
+# -----------------------------
+# Environment
+# -----------------------------
+env = SchedulingEnv(num_ues=30)
+
+# Logging wrapper
+env = Monitor(env, filename="training_log_30ue")
+
+# -----------------------------
+# Model
+# -----------------------------
+model = DQN(
+    "MlpPolicy",
+    env,
+    learning_rate=1e-4,
+    gamma=0.99,
+    verbose=1
+)
+
+# -----------------------------
+# Training
+# -----------------------------
+model.learn(total_timesteps=50000)
+
+# -----------------------------
+# Save model
+# -----------------------------
+os.makedirs("models", exist_ok=True)
+
+model.save("models/dqn_30ue")
+
+print("\nTraining complete!")
+print("Model saved as: models/dqn_30ue.zip")
