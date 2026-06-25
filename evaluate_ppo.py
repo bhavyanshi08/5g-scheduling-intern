@@ -1,7 +1,3 @@
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import numpy as np
 from stable_baselines3 import PPO
 from envs.scheduling_env import SchedulingEnv

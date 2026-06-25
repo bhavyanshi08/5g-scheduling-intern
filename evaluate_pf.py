@@ -1,11 +1,9 @@
 import numpy as np
 from envs.scheduling_env import SchedulingEnv
 
-print("🚀 PF Evaluation Started...")
-
 env = SchedulingEnv()
 
-num_episodes = 5
+num_episodes = 100
 
 throughputs = []
 latencies = []
@@ -13,51 +11,64 @@ fairnesses = []
 
 for ep in range(num_episodes):
 
-    print(f"\n👉 Episode {ep+1}")
-
-    obs = env.reset()
-    if isinstance(obs, tuple):
-        obs = obs[0]
+    obs, _ = env.reset()
 
     done = False
 
     episode_throughput = 0
     episode_latency = 0
+
     allocations = np.zeros(env.num_ues)
+
+    current_ue = 0
 
     while not done:
 
-        # ⚡ PF logic (simple placeholder)
-        action = np.argmax(allocations + 1e-5)
+        # Round Robin action
+        action = current_ue
+        current_ue = (current_ue + 1) % env.num_ues
 
-        step_result = env.step(action)
+        obs, reward, terminated, truncated, info = env.step(action)
 
-        if len(step_result) == 5:
-            obs, reward, terminated, truncated, info = step_result
-            done = terminated or truncated
-        else:
-            obs, reward, done, info = step_result
+        done = terminated or truncated
 
-        if isinstance(obs, tuple):
-            obs = obs[0]
+        episode_throughput += info["throughput"]
+        episode_latency += info["latency"]
 
-        episode_throughput += info.get("throughput", reward)
-        episode_latency += info.get("latency", 0)
+        allocations += info["allocations"]
 
-        if "allocations" in info:
-            allocations += info["allocations"]
-
+    # Jain's Fairness Index
     fairness = (
         np.sum(allocations) ** 2
         /
-        (len(allocations) * np.sum(allocations ** 2) + 1e-8)
+        (
+            len(allocations)
+            * np.sum(allocations ** 2)
+            + 1e-8
+        )
     )
 
     throughputs.append(episode_throughput)
     latencies.append(episode_latency)
     fairnesses.append(fairness)
 
-print("\n📊 PF Results")
-print(f"Throughput: {np.mean(throughputs):.2f}")
-print(f"Latency: {np.mean(latencies):.2f}")
-print(f"Fairness: {np.mean(fairnesses):.4f}")
+print("\nRR Evaluation Results")
+print("-" * 30)
+
+print(
+    f"Throughput: "
+    f"{np.mean(throughputs):.2f} "
+    f"+/- {np.std(throughputs):.2f}"
+)
+
+print(
+    f"Latency: "
+    f"{np.mean(latencies):.2f} "
+    f"+/- {np.std(latencies):.2f}"
+)
+
+print(
+    f"Fairness: "
+    f"{np.mean(fairnesses):.4f} "
+    f"+/- {np.std(fairnesses):.4f}"
+)

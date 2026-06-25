@@ -40,8 +40,7 @@ for ep in range(num_episodes):
         action, _ = model.predict(obs, deterministic=True)
 
         obs, reward, terminated, truncated, info = env.step(action)
-        print(info)
-        break
+        
         done = terminated or truncated
 
         episode_throughput += info.get("throughput", 0)
